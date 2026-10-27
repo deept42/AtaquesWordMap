@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Incidentes públicos no Brasil</title>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">Catálogo aberto · Brasil</p>
+      <h1>Incidentes públicos</h1>
+    </div>
+    <dl class="stats" id="stats"></dl>
+  </header>
+
+  <div class="layout">
+    <aside class="panel">
+      <form class="filters" id="filters">
+        <label>
+          Busca
+          <input id="q" type="search" placeholder="Organização, cidade, setor" autocomplete="off">
+        </label>
+        <div class="row">
+          <label>
+            Tipo
+            <select id="tipo">
+              <option value="">Todos</option>
+              <option value="ransomware">Ransomware</option>
+              <option value="vazamento">Vazamento</option>
+              <option value="ataque">Ataque</option>
+            </select>
+          </label>
+          <label>
+            UF
+            <select id="uf"><option value="">Todas</option></select>
+          </label>
+          <label>
+            Ano
+            <select id="ano"><option value="">Todos</option></select>
+          </label>
+        </div>
+        <label class="check">
+          <input id="somente-mapa" type="checkbox">
+          Só os que têm lugar no mapa
+        </label>
+      </form>
+      <p class="count" id="count"></p>
+      <ul class="list" id="list"></ul>
+    </aside>
+    <main class="map-wrap">
+      <div id="map"></div>
+      <div class="hud" aria-hidden="true">
+        <span class="c tl"></span>
+        <span class="c tr"></span>
+        <span class="c bl"></span>
+        <span class="c br"></span>
+      </div>
+      <p class="coords" id="coords">LAT —   LON —</p>
+      <div class="legend">
+        <span class="ransomware"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#000" stroke="#39ff14"/><rect x="5" y="8" width="6" height="4.5" fill="none" stroke="#39ff14"/><path d="M6.2 8 V6.4 a1.8 1.8 0 0 1 3.6 0 V8" fill="none" stroke="#39ff14"/></svg>Ransomware</span>
+        <span class="vazamento"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#000" stroke="#39ff14"/><path d="M8 3.2 C11.2 6.4 11 10.2 8 12.2 C5 10.2 4.8 6.4 8 3.2 Z" fill="#39ff14"/></svg>Vazamento</span>
+        <span class="ataque"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="#000" stroke="#39ff14"/><circle cx="8" cy="8" r="2.2" fill="none" stroke="#39ff14"/><path d="M8 2.6 V5 M8 11 V13.4 M2.6 8 H5 M11 8 H13.4" stroke="#39ff14"/></svg>Ataque</span>
+        <span class="via">Vias</span>
+      </div>
+      <article class="detail" id="detail" hidden></article>
+    </main>
+  </div>
+  <footer class="notes" id="notes"></footer>
+
+  <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
